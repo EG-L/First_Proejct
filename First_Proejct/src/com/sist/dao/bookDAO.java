@@ -1,16 +1,18 @@
 package com.sist.dao;
 import java.sql.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
 public class bookDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	private final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
-	bookDAO(){
+	private final String URL = "jdbc:oracle:thin:@211.238.142.119:1521:XE";
+	public bookDAO(){
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	public void getConnection() {
@@ -18,6 +20,7 @@ public class bookDAO {
 			conn = DriverManager.getConnection(URL,"hr","happy");
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	public void disConnection() {
@@ -26,12 +29,14 @@ public class bookDAO {
 			if(conn!=null) conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	public void InsertBookData(bookVO vo) {
 		try {
+			
 			getConnection();
-			String sql = "INSERT INTO BOOKINFO VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+			String sql = "INSERT INTO BOOKINFO VALUES(?,?,?,?,?,?,?,TO_DATE(?,'yyyy'),?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getIsbn());
 			ps.setString(2, vo.getBookTitle());
@@ -40,7 +45,7 @@ public class bookDAO {
 			ps.setString(5, vo.getBookType());
 			ps.setString(6, vo.getBookPerson());
 			ps.setString(7, vo.getBookSign());
-			ps.setDate(8, Date.valueOf(vo.getBookDate()));
+			ps.setString(8, vo.getBookDate());
 			ps.setString(9, vo.getBookAccessionno());
 			ps.setString(10, vo.getBookCallnum());
 			ps.setString(11, vo.getBookLocation());

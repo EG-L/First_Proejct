@@ -114,7 +114,7 @@ public class SeoulLibrary_BookInfo {
 											if(bookISBN.contains("(")) {
 												bookISBN=bookISBN.substring(0,bookISBN.indexOf("("));
 											}
-											System.out.println(bookISBN); 
+											System.out.println(bookISBN);
 										}
 									}
 									// a[0]|a[1]|ISBN|제목|저자|bookDtype|bookPerson|bookSign|bookPublisher|bookDate

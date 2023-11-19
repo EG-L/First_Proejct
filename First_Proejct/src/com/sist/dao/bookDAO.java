@@ -58,4 +58,30 @@ public class bookDAO {
 			disConnection();
 		}
 	}
+	
+	public ArrayList<middlectVO> SearchBookisbn(){
+		ArrayList<middlectVO> list = new ArrayList<middlectVO>();
+		try {
+			getConnection();
+			String sql = "SELECT mno,cate,cno "+"FROM middlect";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				middlectVO vo = new middlectVO();
+				vo.setMno(rs.getString(1));
+				vo.setCate(rs.getString(2));
+				vo.setCno(rs.getInt(3));
+				
+				list.add(vo);
+			}
+			rs.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		finally {
+			disConnection();
+		}
+		return list;
+	}
 }

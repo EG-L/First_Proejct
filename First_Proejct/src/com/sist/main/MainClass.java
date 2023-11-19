@@ -59,7 +59,12 @@ public class MainClass {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new MainClass();
+//		new MainClass();
+		bookDAO dao = new bookDAO();
+		ArrayList<middlectVO> vo = dao.SearchBookisbn();
+		for(middlectVO dd:vo) {
+			System.out.println(dd.getCate()+" "+dd.getCno()+" "+dd.getMno());
+		}
 	}
 
 }

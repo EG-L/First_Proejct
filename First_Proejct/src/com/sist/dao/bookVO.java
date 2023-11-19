@@ -3,6 +3,13 @@ import java.util.*;
 public class bookVO {
 	private String isbn,bookTitle,bookAuthor,bookPublisher,
 	               bookType,bookPerson,bookSign,bookAccessionno,bookCallnum,bookLocation,bookDate;
+	
+	public String getBookDate() {
+		return bookDate;
+	}
+	public void setBookDate(String bookDate) {
+		this.bookDate = bookDate;
+	}
 	public String getIsbn() {
 		return isbn;
 	}
